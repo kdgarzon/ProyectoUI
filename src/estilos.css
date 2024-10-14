@@ -1,0 +1,81 @@
+:root{
+    --tam-circulo: 100px
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html{
+    height: 100%;
+}
+h1{
+    text-align: center;
+    position: absolute;
+    top: 2%;
+    left: 14%;
+    z-index: 1;
+    font-size: 2em;
+}
+.fondo {
+    position: relative; 
+    width: 100%;
+    height: 100vh;
+    background-image: url("img/paisaje_plano.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.fondo-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+.antena{
+    position: absolute;
+    max-width: 20%; /*Ancho de la antena*/
+    max-height: 40%;/*Altura que tendrá la antena*/
+    width: auto;
+    height: auto;
+    top: 25%; 
+    left: 4%;
+    z-index: 0; 
+}
+.formulario {
+    position: absolute;
+    top: 15%;
+    left: 75%;
+    right: 1%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+/*ZONAS DE PROPAGACIÓN DE LA SEÑAL DE LA ANTENA*/
+
+#cir{
+    opacity: 0.9;
+    position: absolute;
+    border-radius: 50%;
+}
+.circulo_zona_excl{
+    background-color: red;
+    width: var(--tam-circulo);/*Es el tamaño del circulo definido por la variable que esta al inicio del documento*/
+    height: var(--tam-circulo);
+    z-index: 3;
+}
+.circulo_zona_ocu{
+    background-color: yellow;
+    width: calc(var(--tam-circulo)*2);/*Doble del tamaño del primer circulo*/
+    height: calc(var(--tam-circulo)*2);
+    z-index: 2;
+}
+.circulo_zona_pob{
+    background-color: greenyellow;
+    width: calc(var(--tam-circulo)*4);/*tamaño del primer circulo por 4*/
+    height: calc(var(--tam-circulo)*4);
+    z-index: 1;
+}
