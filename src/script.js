@@ -48,6 +48,10 @@ const enviarFormulario = async (event) => {
     const potencia = parseFloat(datosFormulario.get("txtPotencia"));
     const altura = parseFloat(datosFormulario.get("txtAltura"));
 
+    document.getElementById("txtFrecuencia").disabled = true;
+    document.getElementById("txtPotencia").disabled = true;
+    document.getElementById("txtAltura").disabled = true;
+
     document.getElementById("btnCalcular").disabled = true;
     document.getElementById("loading").style.display = "block";
 
