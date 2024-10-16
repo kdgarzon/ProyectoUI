@@ -29,9 +29,15 @@
                 <div class="invalid-feedback">Por favor ingrese una altura válida.</div>
             </div>
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Calcular Distancia</button>
+                <button type="submit" class="btn btn-primary" id="btnCalcular">Calcular Distancia</button>
             </div>
         </form>
+
+        <div id="loading" class="text-center mt-4" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
 
         <div id="antennaDisplay" class="text-center mt-4">
             <h3>Características de la Antena</h3>
@@ -68,6 +74,10 @@
                     <p id="zonaPoblacionalText" class="fs-5"></p>
                 </div>
             </div>
+        </div>
+
+        <div id="btnNuevaCalculo" class="text-center mt-4" style="display: none;">
+            <button class="btn btn-success" id="btnLimpiar">Calcular Otra Vez</button>
         </div>
     </div>
 </div>

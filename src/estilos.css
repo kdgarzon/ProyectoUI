@@ -9,7 +9,6 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
     color: #333;
-    overflow-y: hidden;
 }
 
 h1, h3 {
@@ -19,7 +18,7 @@ h1, h3 {
 
 /* Contenedor principal */
 .container {
-    max-width: 900px;
+    max-width: 1080px;
     margin: 0 auto;
 }
 
@@ -70,17 +69,17 @@ h1, h3 {
 
 /* Sección de imágenes */
 #imageDisplay img {
-    width: 120px;
-    height: 120px;
+    width: 96px;
+    height: 96px;
     object-fit: contain;
-    margin: 10px;
+    margin: 5px;
 }
 
 #antennaDisplay img {
     max-width: 200px;
     max-height: 300px;
     object-fit: contain;
-    margin-top: 15px;
+    margin-top: 2px;
 }
 
 #imageDisplay .row {
