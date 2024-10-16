@@ -1,81 +1,131 @@
-:root{
-    --tam-circulo: 100px
-}
-
-*{
+/* Reseteo básico y ajustes globales */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body, html{
-    height: 100%;
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-y: hidden;
 }
-h1{
-    text-align: center;
-    position: absolute;
-    top: 2%;
-    left: 14%;
-    z-index: 1;
-    font-size: 2em;
+
+h1, h3 {
+    color: #343a40;
+    font-weight: 600;
 }
-.fondo {
-    position: relative; 
-    width: 100%;
-    height: 100vh;
-    background-image: url("img/paisaje_plano.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
-.fondo-img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
+
+/* Card que contiene el formulario */
+.card {
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.antena{
-    position: absolute;
-    max-width: 20%; /*Ancho de la antena*/
-    max-height: 40%;/*Altura que tendrá la antena*/
-    width: auto;
-    height: auto;
-    top: 25%; 
-    left: 4%;
-    z-index: 0; 
+
+/* Formulario */
+.form-label {
+    font-weight: 500;
+    color: #495057;
 }
-.formulario {
-    position: absolute;
-    top: 15%;
-    left: 75%;
-    right: 1%;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
+
+.form-control {
     border-radius: 10px;
-    z-index: 1;
+    border: 1px solid #ced4da;
+    padding: 12px 16px;
+    font-size: 1rem;
 }
 
-/*ZONAS DE PROPAGACIÓN DE LA SEÑAL DE LA ANTENA*/
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(38, 143, 255, 0.25);
+}
 
-#cir{
-    opacity: 0.9;
-    position: absolute;
-    border-radius: 50%;
+/* Botón */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
 }
-.circulo_zona_excl{
-    background-color: red;
-    width: var(--tam-circulo);/*Es el tamaño del circulo definido por la variable que esta al inicio del documento*/
-    height: var(--tam-circulo);
-    z-index: 3;
+
+.btn-primary:hover {
+    background-color: #0056b3;
 }
-.circulo_zona_ocu{
-    background-color: yellow;
-    width: calc(var(--tam-circulo)*2);/*Doble del tamaño del primer circulo*/
-    height: calc(var(--tam-circulo)*2);
-    z-index: 2;
+
+/* Validación */
+.invalid-feedback {
+    font-size: 0.875rem;
+    color: #dc3545;
 }
-.circulo_zona_pob{
-    background-color: greenyellow;
-    width: calc(var(--tam-circulo)*4);/*tamaño del primer circulo por 4*/
-    height: calc(var(--tam-circulo)*4);
-    z-index: 1;
+
+/* Sección de imágenes */
+#imageDisplay img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 10px;
+}
+
+#antennaDisplay img {
+    max-width: 200px;
+    max-height: 300px;
+    object-fit: contain;
+    margin-top: 15px;
+}
+
+#imageDisplay .row {
+    align-items: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+#icono-antena {
+    width: 32px;
+    margin: 12px;
+}
+
+/* Texto en negrita */
+.bold {
+    font-weight: bold;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    #imageDisplay img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #antennaDisplay img {
+        max-width: 150px;
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        padding: 10px;
+        font-size: 1rem;
+    }
 }
