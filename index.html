@@ -3,47 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/estilos.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-        crossorigin="anonymous">
-    <title>Antenas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/estilos.css">
+    <title>Antenas - Cálculo de Zonas</title>
 </head>
-<body>
-    <div class="fondo">
-        <h1>Zonas de exclusión, ocupación y población</h1>
-        <!--<img src="Img/paisaje_plano.jpg" alt="Fondo">-->
-        <div class="circulo_zona_excl" id="cir"></div>
-        <div class="circulo_zona_ocu" id="cir"></div>
-        <div class="circulo_zona_pob" id="cir"></div>
-        <img src="src/img/antena.png" alt="Antena" class="antena">
-        <div class="formulario">
-            <form id="formulario">
-                <div>
-                    <label for="txtFrecuencia">Frecuencia:</label>
-                    <input type="number" id="txtFrecuencia" name="txtFrecuencia" required>
-                </div>
-                <div>
-                    <label for="txtPotencia">Potencia de la antena:</label>
-                    <input type="number" id="txtPotencia" name="txtPotencia" required>
-                </div>
-                <div>
-                    <label for="txtAltura">Altura de la antena:</label>
-                    <input type="number" id="txtAltura" name="txtAltura" required>
-                </div>
-                <input type="submit" value="CALCULAR DISTANCIA">
-            </form>
-            <p id="zonaExclusion"></p>
-            <p id="zonaOcupacional"></p>
-            <p id="zonaPoblacional"></p>
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="text-center mb-4">Zonas de Exclusión, Ocupación y Población</h1>
+
+    <div class="card shadow-sm p-4">
+        <form id="formulario" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="txtFrecuencia" class="form-label">Frecuencia (MHz):</label>
+                <input type="number" id="txtFrecuencia" name="txtFrecuencia" class="form-control" required>
+                <div class="invalid-feedback">Por favor ingrese una frecuencia válida.</div>
+            </div>
+            <div class="mb-3">
+                <label for="txtPotencia" class="form-label">Potencia de la antena (W):</label>
+                <input type="number" id="txtPotencia" name="txtPotencia" class="form-control" required>
+                <div class="invalid-feedback">Por favor ingrese una potencia válida.</div>
+            </div>
+            <div class="mb-3">
+                <label for="txtAltura" class="form-label">Altura de la antena (m):</label>
+                <input type="number" id="txtAltura" name="txtAltura" class="form-control" required>
+                <div class="invalid-feedback">Por favor ingrese una altura válida.</div>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary" id="btnCalcular">Calcular Distancia</button>
+            </div>
+        </form>
+
+        <div id="loading" class="text-center mt-4" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
         </div>
-        <p id="resultadoFinal">
-            
-        </p>
+
+        <div id="antennaDisplay" class="text-center mt-4">
+            <h3>Características de la Antena</h3>
+            <p id="antennaInfo">
+                <img alt="antena" src="src/img/ic_antena.svg" id="icono-antena" class="img-fluid" />
+                Frecuencia: <span id="frecuenciaValue">0</span> MHz, Potencia: <span id="potenciaValue">0</span> W, Altura: <span id="alturaValue">0</span> m
+            </p>
+        </div>
+
+        <div id="imageDisplay" class="mt-4">
+            <div id="zonaExclusion" class="row mb-4" style="display: none;">
+                <div class="col-12 col-md-4 text-center">
+                    <img id="zonaExclusionImg" src="src/img/ic_zona_exclusion.png" alt="Zona Exclusión" class="img-fluid" />
+                </div>
+                <div class="col-12 col-md-8">
+                    <p id="zonaExclusionText" class="fs-5"></p>
+                </div>
+            </div>
+
+            <div id="zonaOcupacional" class="row mb-4" style="display: none;">
+                <div class="col-12 col-md-4 text-center">
+                    <img id="zonaOcupacionalImg" src="src/img/ic_zona_ocupacional.png" alt="Zona Ocupación" class="img-fluid" />
+                </div>
+                <div class="col-12 col-md-8">
+                    <p id="zonaOcupacionalText" class="fs-5"></p>
+                </div>
+            </div>
+
+            <div id="zonaPoblacional" class="row mb-4" style="display: none;">
+                <div class="col-12 col-md-4 text-center">
+                    <img id="zonaPoblacionalImg" src="src/img/ic_zona_poblacional.png" alt="Zona Población" class="img-fluid" />
+                </div>
+                <div class="col-12 col-md-8">
+                    <p id="zonaPoblacionalText" class="fs-5"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="btnNuevaCalculo" class="text-center mt-4" style="display: none;">
+            <button class="btn btn-success" id="btnLimpiar">Calcular Otra Vez</button>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-    crossorigin="anonymous"></script>
-    <script src="src/script.js"></script>
+</div>
+
+<script src="src/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
